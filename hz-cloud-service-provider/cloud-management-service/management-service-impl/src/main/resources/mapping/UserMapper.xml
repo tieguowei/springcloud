@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hui.zhong.cf.manage.dao.UserMapper" >
+  <resultMap id="BaseResultMap" type="com.hui.zhong.cf.manage.model.User" >
+    <id column="userid" property="userid" javaType="Integer" />
+    <result column="username" property="username" javaType="String" />
+    <result column="passwd" property="passwd" javaType="String" />
+  </resultMap>
+
+	<select id="find" parameterType="com.hui.zhong.cf.manage.model.User" resultMap="BaseResultMap">
+		select userid,username,passwd from t_user
+		<where>
+			<if test="userid != null">
+				userid = #{userid}
+			</if>
+			<if test="username != null">
+				and username = #{username}
+			</if>
+			<if test="passwd != null">
+				and passwd = #{passwd}
+			</if>
+		</where>
+	</select>
+  
+  
+  
+</mapper>
