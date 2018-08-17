@@ -1,13 +1,19 @@
 package com.hzcf.plantform.feign;
 
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.cloud.netflix.feign.FeignClient;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.hzcf.plantform.hystrixCallback.EmployeeClientFallback;
+import com.hzcf.plantform.pojo.Employee;
+import com.hzcf.plantform.pojo.Role;
+import com.hzcf.plantform.util.PageModel;
 
 /**
  *<dl>
@@ -26,8 +32,83 @@ import com.hzcf.plantform.hystrixCallback.EmployeeClientFallback;
 @FeignClient(name = "basic-microservice", fallback =EmployeeClientFallback.class)
 public interface  EmployeeFeignClient {
 
-	  //getEmployeeById方法是服务提供者中的方法
-	  @RequestMapping(value = "/getEmployeeById/{employeeId}", method = RequestMethod.GET)
-	  public  Map<String,Object> getEmployeeById(@PathVariable("employeeId") int employeeId);
-	  
+	
+    /**
+	 * 分页查询所有员工
+	 * @param request
+	 * @param dataMsg
+	 * @return
+	 */
+	 @RequestMapping(value = "/employee/getEmployeeList", method = RequestMethod.POST)
+	 public PageModel getEmployeeList(@RequestParam Map<String, Object> paramsCondition);
+
+    /**
+	 * 查询员工拥有的角色
+	 * @param id
+	 * @return
+	 */
+	 @RequestMapping(value = "/employee/getRole", method = RequestMethod.POST)
+	 public List<Role> getRoleList();
+
+     /**
+	 * 查询员工拥有的角色
+	 * @param id
+	 * @return
+	 */
+	 @RequestMapping(value = "/employee/getRoleList", method = RequestMethod.POST)
+	 public List<Integer> getRoleByEmployeeId(@RequestParam("employeeId")int employeeId);
+    /**
+	 * 校验商户原始密码是否正确
+	 * @return
+	 */
+	 @RequestMapping(value = "/employee/checkOldPwd", method = RequestMethod.POST)
+	 public boolean checkOldPwd(@RequestParam("employeeId")int employeeId,@RequestParam("oldPwd") String oldPwd);
+	 
+    /**
+	 * 修改用户密码
+	 * @return
+	 */
+	 @RequestMapping(value = "/employee/updatePwd", method = RequestMethod.POST)
+	public void updatePwd(@RequestParam("employeeId")int employeeId, @RequestParam("newPwd")String newPwd);
+
+    /**
+	 * 修改员工角色
+	 * @param merchantId
+	 * @param rids
+	 * @return
+	 */
+	@RequestMapping(value = "/employee/updateEmployeeRole", method = RequestMethod.POST)
+	public void updateEmployeeRole(@RequestParam("employeeId")int employeeId, @RequestParam("employeeId")String rids);
+	
+	/**
+	 * 添加员工
+	 * @return
+	 */
+	@RequestMapping(value = "/employee/saveEmployee", method = RequestMethod.POST)
+	public void saveEmployee(@RequestBody Employee employee);
+
+	/**
+	 * 修改员工回显
+	 * @return
+	 */
+	@RequestMapping(value = "/employee/getEmployeeById", method = RequestMethod.POST)
+	public Employee getEmployeeById(@RequestParam("employeeId")int employeeId);
+	/**
+	 * 修改员工信息
+	 * @return
+	 */
+	@RequestMapping(value = "/employee/updateEmployee", method = RequestMethod.POST)
+	public void updateEmployee(@RequestBody Employee employee);
+
+	/**
+	 * 删除员工
+	 * @param merchant
+	 * @return
+	 */
+	@RequestMapping(value = "/employee/deleteEmployee", method = RequestMethod.POST)
+	public void deleteEmployee(@RequestBody Employee employee);
+
+	
+	
+	 
 }

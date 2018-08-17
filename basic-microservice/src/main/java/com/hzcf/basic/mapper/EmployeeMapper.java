@@ -30,12 +30,18 @@ public interface EmployeeMapper {
     int updateByPrimaryKeySelective(Employee record);
 
     int updateByPrimaryKey(Employee record);
-
-   /**
-    * 根据员工登陆账号查询员工信息
-    * @param map
-    * @return
-    */
+    /**
+  	 * 根据用户登陆账号查询用户信息
+  	 */
 	Employee getEmployeeByEmployeeNo(Map<String, Object> map);
 
+	List<Map<String, Object>> findAllRetMapByPage(Map<String, Object> paramsCondition);
+
+	Long findAllByPageCount(Map<String, Object> paramsCondition);
+
+	/**
+	 * 删除员工
+	 * @param map
+	 */
+	void deleteEmployee(Map<String, Object> map);
 }

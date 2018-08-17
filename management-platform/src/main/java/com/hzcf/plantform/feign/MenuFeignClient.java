@@ -1,13 +1,17 @@
 package com.hzcf.plantform.feign;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.cloud.netflix.feign.FeignClient;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.hzcf.plantform.pojo.Menu;
+import com.hzcf.plantform.util.PageModel;
 
 
 /**
@@ -28,15 +32,71 @@ import com.hzcf.plantform.pojo.Menu;
 public interface  MenuFeignClient {
 
 	
-	  /**
+	    /**
 		 * 根据员工id获取菜单
 		 * getMenuByEmployeeId是服务提供者中的方法名
 		 * @param id
 		 * @return
 		 */
-	  @RequestMapping(value = "/menu/getMenuByEmployeeId/{employeeId}", method = RequestMethod.POST)
+	  @RequestMapping(value = "/menu/getMenuByEmployeeId/{employeeId}", method = RequestMethod.GET)
 	  public List<Menu> getMenuByEmployeeId(@PathVariable("employeeId") int employeeId);
 
-	/*  public PageModel getMenuList(Map<String, Object> paramsCondition);*/
+	  /**
+		 * 分页查询所有
+		 * @param pageNumber
+		 * @param pageSize
+		 * @return
+		 */
+	  @RequestMapping(value = "/menu/getMenuList", method = RequestMethod.POST)
+	  public PageModel getMenuList(@RequestParam Map<String, Object> paramsCondition);
+
+	  /**
+		 * 查询所有pid为0的菜单
+		 * @return map
+		 */
+	  @RequestMapping(value = "/menu/getParentMenuList", method = RequestMethod.POST)
+	  public List<Map<String, Object>> getParentMenuList();
+
+    /**
+	 * 添加菜单
+	 * @param menu
+	 * @return
+	 */
+	  @RequestMapping(value = "/menu/saveMenu", method = RequestMethod.POST)
+	  public void saveMenu(@RequestBody Menu menu);
+
 	  
+     /**
+	 * 校验菜单名称是否存在
+	 * @param menu
+	 * @return
+	 */
+	 @RequestMapping(value = "/menu/checkMenuName", method = RequestMethod.POST)
+	 public Menu checkMenuNameIsRepeat(@RequestParam Map<String, Object> map);
+
+
+	/**
+	 * 修改回显
+	 */
+	 @RequestMapping(value = "/menu/getMenuById", method = RequestMethod.GET)
+	public Menu quertMenuById(@RequestParam("mid")int mid);
+
+    /**
+	 * 修改菜单
+	 * @param menu
+	 * @return
+	 */
+	 @RequestMapping(value = "/menu/updateMenu", method = RequestMethod.POST)
+	public void updateMenu(@RequestBody Menu menu);
+
+    /**
+	 * 删除菜单
+	 * @param menu
+	 * @return
+	 */
+	 @RequestMapping(value = "/menu/deleteMenu", method = RequestMethod.POST)
+	public void deleteMenu(@RequestBody Menu menu);
+	  
+	 
+	 
 }

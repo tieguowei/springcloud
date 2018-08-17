@@ -39,11 +39,6 @@ public interface MenuMapper {
 	List<Menu> getMenuByEmployeeId(Map<String, Object> requestMap);
 
 	/**
-	 * 根据员工角色id 查询权限
-	 */
-	List<Menu> permissionListRoleId(Integer id);
-
-	/**
 	 * 查询所有菜单
 	 * @param paramsCondition
 	 * @return
@@ -57,6 +52,10 @@ public interface MenuMapper {
 	Long findAllByPageCount(Map<String, Object> paramsCondition);
 
 
+	/**
+	 * 根据商户角色id 查询权限
+	 */
+	List<Menu> permissionListRoleId(Integer id);
 
 	/**
 	 * 查询所有pid为0的菜单
@@ -81,5 +80,6 @@ public interface MenuMapper {
 	 * @return
 	 */
 	List<Menu> queryChildMenuByPid(String pid);
+
 
 }

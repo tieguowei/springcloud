@@ -26,7 +26,10 @@ public class LoginServiceImpl implements LoginService {
 	@Autowired
 	private MenuMapper menuMapper;
 	
+
+	
 	protected final Log logger = LogFactory.getLog(getClass());
+	
 
 	
 	@Override

@@ -1,15 +1,20 @@
 package com.hzcf.plantform.feign;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.cloud.netflix.feign.FeignClient;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.hzcf.plantform.pojo.Employee;
 import com.hzcf.plantform.pojo.Menu;
 import com.hzcf.plantform.pojo.Role;
+import com.hzcf.plantform.util.PageModel;
+import com.hzcf.plantform.util.ViewTree;
 
 
 /**
@@ -55,7 +60,7 @@ public interface  RoleFeignClient {
 	   * @param employeeId
 	   * @return
 	   */
-	  @RequestMapping(value = "/login/permissionListRoleId/{employeeId}", method = RequestMethod.POST)
+	  @RequestMapping(value = "/login/permissionListRoleId/{employeeId}", method = RequestMethod.GET)
 	  public List<Menu> permissionListRoleId(@PathVariable("employeeId") int employeeId);
 	  
 	  
@@ -66,5 +71,65 @@ public interface  RoleFeignClient {
 	   */
 	  @RequestMapping(value = "/login/getEmployeeByEmployeeNo/{employeeNo}", method = RequestMethod.GET)
 	  public Employee getEmployeeByEmployeeNo(@PathVariable("employeeNo") String employeeNo);
+
+	    /**
+		 * 分页查询所有角色
+		 * @param pageNumber
+		 * @param pageSize
+		 * @return
+		 */
+	   @RequestMapping(value = "/role/getRoleList", method = RequestMethod.POST)
+	   public PageModel getRoleList(@RequestParam Map<String, Object> paramsCondition);
+	    /**
+		 * 添加角色
+		 * @param role
+		 * @return
+		 */
+	   @RequestMapping(value = "/role/saveRole", method = RequestMethod.POST)
+	   public void saveRole(@RequestBody Role role);
+
+	   /**
+		 * 校验角色编码是否存在
+		 * @param menu
+		 * @return
+		 */
+	   @RequestMapping(value = "/role/checkRoleCode", method = RequestMethod.POST)
+	   public Role checkRoleCodeIsRepeat(@RequestParam Map<String, Object> map);
+	   
+	    /**
+		 * 修改回显
+		 */
+	   @RequestMapping(value = "/role/getRoleById", method = RequestMethod.POST)
+	   public Role quertRoleById(@RequestParam("rid") int id);
+
+	   /**
+		 * 修改角色
+		 * @param role
+		 * @return
+		 */
+	   @RequestMapping(value = "/role/updateRole", method = RequestMethod.POST)
+		public void updateRole(@RequestBody Role role);
+
+	   /**
+		 * 删除菜单
+		 * @param role
+		 * @return
+		 */
+	   @RequestMapping(value = "/role/deleteRole", method = RequestMethod.POST)
+	   public void deleteRole(@RequestBody Role role);
+	   /**
+		 * 加载权限菜单
+		 * @param rid
+		 * @return
+		 */
+	   @RequestMapping(value = "/role/viewTree", method = RequestMethod.POST)
+	   public List<ViewTree> getViewTree(@RequestParam("rid") int rid);
+	   /**
+		 * 修改角色权限
+		 */
+	   @RequestMapping(value = "/role/updateRoleAuth", method = RequestMethod.POST)
+	   public void updateRoleAuth(@RequestParam("rid")int rid,@RequestParam("menuIds")String menuIds);
+	  
+	  
 	  
 }

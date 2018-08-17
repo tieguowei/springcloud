@@ -31,7 +31,7 @@ public interface RoleMapper {
 
     int updateByPrimaryKey(Role record);
     /**
-	 * 根据员工ID查询角色信息
+	 * 根据用户ID查询角色信息
 	 */
 	List<Role> findRoleByEmployeeId(Integer id);
 
