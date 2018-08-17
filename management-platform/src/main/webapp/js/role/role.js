@@ -1,3 +1,7 @@
+$(function(){
+	Role.formValidator();
+    Role.init();
+});
 var Role = function () {
     return{
         init:function(){
@@ -506,7 +510,3 @@ var Role = function () {
     }
 }();
 
-$(function(){
-    formValidator();
-    Role.init();
-});

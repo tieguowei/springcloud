@@ -1,3 +1,8 @@
+$(function(){
+    Menu.formValidator();
+    Menu.init();
+});
+
 var Menu = function(){
     return{
         init:function(){
@@ -422,7 +427,3 @@ var Menu = function(){
 }();
 
 
-$(function(){
-    Menu.formValidator();
-    Menu.init();
-});

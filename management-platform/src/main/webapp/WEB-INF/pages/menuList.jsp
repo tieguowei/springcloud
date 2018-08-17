@@ -33,7 +33,7 @@
 <table id="menu-table" class="table table-hover table-striped table-condensed table-bordered"></table>
 
 <!--toolbar  -->
-<%-- <div id="toolbar" class="btn-toolbar">
+  <div id="toolbar" class="btn-toolbar">
 
 <shiro:hasPermission name="menuManager:add">
 		
@@ -42,7 +42,7 @@
     </button>
  </shiro:hasPermission>
    
-</div> --%>
+</div> 
 
 
 <!-- 模态框（Modal） -->

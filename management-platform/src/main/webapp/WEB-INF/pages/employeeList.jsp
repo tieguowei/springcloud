@@ -43,12 +43,12 @@
 <!--toolbar  -->
 <div id="toolbar" class="btn-toolbar">
 
-<%-- <shiro:hasPermission name="employeeManager:add">
+ <shiro:hasPermission name="employeeManager:add">
 		
   <button onclick="Employee.openDlg()" type="button" class="btn btn-success" style="margin-left: 1015px;">
       <span class="glyphicon glyphicon-plus" aria-hidden="true">添加</span>
     </button>
- </shiro:hasPermission> --%>
+ </shiro:hasPermission> 
    
 </div>
 

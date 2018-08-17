@@ -13,13 +13,13 @@
 <table id="role-table" class="table table-hover table-striped table-condensed table-bordered"></table>
 
 <!--toolbar  -->
-<%-- <div id="toolbar" class="btn-toolbar">
+<div id="toolbar" class="btn-toolbar">
 <shiro:hasPermission name="roleManager:add">
     <button onclick="Role.openAddModal()" type="button" class="btn btn-success" style="margin-left: 1030px;">
       <span class="glyphicon glyphicon-plus" aria-hidden="true">添加</span>
     </button>
     </shiro:hasPermission>
-</div> --%>
+</div> 
 
 <!-- 模态框（Modal） -->
 <!-- 添加部门 -->
