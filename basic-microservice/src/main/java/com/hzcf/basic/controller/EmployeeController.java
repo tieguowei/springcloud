@@ -22,7 +22,20 @@ public class EmployeeController {
 
 	@Autowired
 	private EmployeeService employeeService;
+	
+	@RequestMapping("/test")
+	public Employee test() {
+		try {
 
+			Employee employee =  new Employee();
+			employee.setEmployeeNo("10000000");
+			return employee;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+	
 	/**
 	 * 修改员工 回显
 	 * 
