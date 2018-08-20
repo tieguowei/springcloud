@@ -1,10 +1,7 @@
 package com.hzcf.basic.controller;
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -81,8 +78,8 @@ public class MenuController {
 		 */
 		@ResponseBody
 		@RequestMapping("/saveMenu")
-		public void saveMenu(@RequestBody Menu menu){
-				menuService.saveMenu(menu);
+		public void saveMenu(@RequestBody Menu menu,@RequestParam("employeeId") int employeeId){
+				menuService.saveMenu(menu,employeeId);
 		}
 		
 		/**ToTo
@@ -129,8 +126,8 @@ public class MenuController {
 		 */
 		@ResponseBody
 		@RequestMapping("/updateMenu")
-		public void updateMenu(@RequestBody Menu menu){
-				menuService.updateMenu(menu);
+		public void updateMenu(@RequestBody Menu menu,@RequestParam("employeeId") int employeeId){
+				menuService.updateMenu(menu,employeeId);
 		}
 		
 		/**
@@ -140,9 +137,9 @@ public class MenuController {
 		 */
 		@ResponseBody
 		@RequestMapping("/deleteMenu")
-		public void deleteMenu(@RequestBody Menu menu){
+		public void deleteMenu(@RequestBody Menu menu,@RequestParam("employeeId") int employeeId){
 			
-				menuService.deleteMenu(menu);
+				menuService.deleteMenu(menu,employeeId);
 		}
 	
 }

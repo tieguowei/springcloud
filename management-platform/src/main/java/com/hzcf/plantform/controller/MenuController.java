@@ -8,7 +8,9 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
+import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -17,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.hzcf.plantform.feign.MenuFeignClient;
+import com.hzcf.plantform.pojo.Employee;
 import com.hzcf.plantform.pojo.Menu;
 import com.hzcf.plantform.util.DataMsg;
 import com.hzcf.plantform.util.PageModel;
@@ -100,7 +103,10 @@ public class MenuController {
 	@RequestMapping("/saveMenu")
 	public boolean saveMenu(Menu menu){
 		try {
-			menuFeignClient.saveMenu(menu);
+			Subject subject = SecurityUtils.getSubject();
+			Employee employee = (Employee) subject.getPrincipal();
+		    int employeeId= employee.getEmployeeId();
+			menuFeignClient.saveMenu(menu,employeeId);
 			return true;
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -169,7 +175,10 @@ public class MenuController {
 	@RequestMapping("/updateMenu")
 	public String updateMenu(Menu menu){
 		try {
-			menuFeignClient.updateMenu(menu);
+			Subject subject = SecurityUtils.getSubject();
+			Employee employee = (Employee) subject.getPrincipal();
+		    int employeeId= employee.getEmployeeId();
+			menuFeignClient.updateMenu(menu,employeeId);
 			return "1";
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -188,7 +197,10 @@ public class MenuController {
 	@RequestMapping("/deleteMenu")
 	public boolean deleteMenu(Menu menu){
 		try {
-			menuFeignClient.deleteMenu(menu);
+			Subject subject = SecurityUtils.getSubject();
+			Employee employee = (Employee) subject.getPrincipal();
+		    int employeeId= employee.getEmployeeId();
+			menuFeignClient.deleteMenu(menu,employeeId);
 			return true;
 		} catch (Exception e) {
 			e.printStackTrace();

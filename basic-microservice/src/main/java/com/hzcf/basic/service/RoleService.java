@@ -25,7 +25,7 @@ public interface RoleService {
 	/**
 	 * 添加角色
 	 */
-	void saveRole(Role role,Employee employee);
+	void saveRole(Role role,int employeeId);
 	/**
 	 * 修改回显
 	 * @param id
@@ -36,12 +36,12 @@ public interface RoleService {
 	 * 修改角色
 	 * @param role
 	 */
-	void updateRole(Role role,Employee employee);
+	void updateRole(Role role,int employeeId);
 	/**
 	 * 删除菜单
 	 * @param role
 	 */
-	void deleteRole(Role role,Employee employee);
+	void deleteRole(Role role,int employeeId);
 	/**
 	 * 加载权限菜单
 	 * @param rid
