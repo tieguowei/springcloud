@@ -3,6 +3,7 @@ package com.hzcf.basic.service;
 import java.util.List;
 import java.util.Map;
 
+import com.hzcf.basic.pojo.Employee;
 import com.hzcf.basic.pojo.Role;
 import com.hzcf.basic.util.PageModel;
 import com.hzcf.basic.util.ViewTree;
@@ -24,7 +25,7 @@ public interface RoleService {
 	/**
 	 * 添加角色
 	 */
-	void saveRole(Role role);
+	void saveRole(Role role,Employee employee);
 	/**
 	 * 修改回显
 	 * @param id
@@ -35,12 +36,12 @@ public interface RoleService {
 	 * 修改角色
 	 * @param role
 	 */
-	void updateRole(Role role);
+	void updateRole(Role role,Employee employee);
 	/**
 	 * 删除菜单
 	 * @param role
 	 */
-	void deleteRole(Role role);
+	void deleteRole(Role role,Employee employee);
 	/**
 	 * 加载权限菜单
 	 * @param rid
@@ -53,5 +54,5 @@ public interface RoleService {
 	 * @param menuIds
 	 * @return
 	 */
-	void updateRoleAuth(int rid, String menuIds);
+	void updateRoleAuth(int rid, String menuIds,Employee employee);
 }

@@ -86,7 +86,7 @@ public interface  RoleFeignClient {
 		 * @return
 		 */
 	   @RequestMapping(value = "/role/saveRole", method = RequestMethod.POST)
-	   public void saveRole(@RequestBody Role role);
+	   public void saveRole(@RequestBody Role role,@RequestBody Employee employee);
 
 	   /**
 		 * 校验角色编码是否存在
@@ -108,7 +108,7 @@ public interface  RoleFeignClient {
 		 * @return
 		 */
 	   @RequestMapping(value = "/role/updateRole", method = RequestMethod.POST)
-		public void updateRole(@RequestBody Role role);
+		public void updateRole(@RequestBody Role role,@RequestBody Employee employee);
 
 	   /**
 		 * 删除菜单
@@ -116,7 +116,7 @@ public interface  RoleFeignClient {
 		 * @return
 		 */
 	   @RequestMapping(value = "/role/deleteRole", method = RequestMethod.POST)
-	   public void deleteRole(@RequestBody Role role);
+	   public void deleteRole(@RequestBody Role role,@RequestBody Employee employee);
 	   /**
 		 * 加载权限菜单
 		 * @param rid
@@ -128,7 +128,7 @@ public interface  RoleFeignClient {
 		 * 修改角色权限
 		 */
 	   @RequestMapping(value = "/role/updateRoleAuth", method = RequestMethod.POST)
-	   public void updateRoleAuth(@RequestParam("rid")int rid,@RequestParam("menuIds")String menuIds);
+	   public void updateRoleAuth(@RequestParam("rid")int rid,@RequestParam("menuIds")String menuIds,@RequestBody Employee employee);
 	  
 	  
 	  

@@ -10,12 +10,12 @@ import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.hzcf.plantform.feign.RoleFeignClient;
+import com.hzcf.plantform.pojo.Employee;
 import com.hzcf.plantform.pojo.Role;
 import com.hzcf.plantform.util.DataMsg;
 import com.hzcf.plantform.util.PageModel;
@@ -86,9 +86,9 @@ public class RoleController {
 	@RequiresPermissions("roleManager:add")
 	@ResponseBody
 	@RequestMapping("/saveRole")
-	public boolean saveRole(Role role){
+	public boolean saveRole(Role role,Employee employee){
 		try {
-			RoleFeignClient.saveRole(role);
+			RoleFeignClient.saveRole(role,employee);
 			return true;
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -156,9 +156,9 @@ public class RoleController {
 	@RequiresPermissions("roleManager:update")
 	@ResponseBody
 	@RequestMapping("/updateRole")
-	public boolean updateRole(Role role){
+	public boolean updateRole(Role role,Employee employee){
 		try {
-			RoleFeignClient.updateRole(role);
+			RoleFeignClient.updateRole(role,employee);
 			return true;
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -175,9 +175,9 @@ public class RoleController {
 	@RequiresPermissions("roleManager:delete")
 	@ResponseBody
 	@RequestMapping("/deleteRole")
-	public boolean deleteRole(Role role){
+	public boolean deleteRole(Role role,Employee employee){
 		try {
-			RoleFeignClient.deleteRole(role);
+			RoleFeignClient.deleteRole(role,employee);
 			return true;
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -208,9 +208,9 @@ public class RoleController {
 	@ResponseBody
 	@RequiresPermissions("roleManager:updateRoleAuth")
 	@RequestMapping("/updateRoleAuth")
-	public boolean updateRoleAuth(@RequestParam("rid")int rid,@RequestParam("menuIds")String menuIds){
+	public boolean updateRoleAuth(@RequestParam("rid")int rid,@RequestParam("menuIds")String menuIds,Employee employee){
 			try {
-				RoleFeignClient.updateRoleAuth(rid, menuIds);
+				RoleFeignClient.updateRoleAuth(rid, menuIds,employee);
 				return true;
 			} catch (Exception e) {
 				e.printStackTrace();
