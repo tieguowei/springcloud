@@ -6,6 +6,7 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -69,7 +70,7 @@ public class RoleController {
 	 */
 	@ResponseBody
 	@RequestMapping("/saveRole")
-	public void saveRole(Role role,Employee employee){
+	public void saveRole(@RequestBody Role role,@RequestBody Employee employee){
 		
 			roleService.saveRole(role,employee);
 	}
@@ -127,7 +128,7 @@ public class RoleController {
 	 */
 	@ResponseBody
 	@RequestMapping("/updateRole")
-	public void updateRole(Role role,Employee employee){
+	public void updateRole(@RequestBody Role role,@RequestBody Employee employee){
 			roleService.updateRole(role,employee);
 	}
 	
@@ -139,7 +140,7 @@ public class RoleController {
 	 */
 	@ResponseBody
 	@RequestMapping("/deleteRole")
-	public void deleteRole(Role role,Employee employee){
+	public void deleteRole(@RequestBody Role role,@RequestBody Employee employee){
 			roleService.deleteRole(role,employee);
 			
 	}
@@ -166,7 +167,7 @@ public class RoleController {
 	
 	@ResponseBody
 	@RequestMapping("/updateRoleAuth")
-	public void updateRoleAuth(@RequestParam("rid")int rid,@RequestParam("menuIds")String menuIds,Employee employee){
+	public void updateRoleAuth(@RequestParam("rid")int rid,@RequestParam("menuIds")String menuIds,@RequestBody Employee employee){
 				roleService.updateRoleAuth(rid, menuIds,employee);
 	}
 	
