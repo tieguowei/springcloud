@@ -6,7 +6,9 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
+import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -86,9 +88,12 @@ public class RoleController {
 	@RequiresPermissions("roleManager:add")
 	@ResponseBody
 	@RequestMapping("/saveRole")
-	public boolean saveRole(Role role,Employee employee){
+	public boolean saveRole(Role role){
 		try {
-			RoleFeignClient.saveRole(role,employee);
+			Subject subject = SecurityUtils.getSubject();
+			Employee employee = (Employee) subject.getPrincipal();
+		    int employeeId= employee.getEmployeeId();
+			RoleFeignClient.saveRole(role,employeeId);
 			return true;
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -156,9 +161,12 @@ public class RoleController {
 	@RequiresPermissions("roleManager:update")
 	@ResponseBody
 	@RequestMapping("/updateRole")
-	public boolean updateRole(Role role,Employee employee){
+	public boolean updateRole(Role role){
 		try {
-			RoleFeignClient.updateRole(role,employee);
+			Subject subject = SecurityUtils.getSubject();
+			Employee employee = (Employee) subject.getPrincipal();
+		    int employeeId= employee.getEmployeeId();
+			RoleFeignClient.updateRole(role,employeeId);
 			return true;
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -175,9 +183,12 @@ public class RoleController {
 	@RequiresPermissions("roleManager:delete")
 	@ResponseBody
 	@RequestMapping("/deleteRole")
-	public boolean deleteRole(Role role,Employee employee){
+	public boolean deleteRole(Role role){
 		try {
-			RoleFeignClient.deleteRole(role,employee);
+			Subject subject = SecurityUtils.getSubject();
+			Employee employee = (Employee) subject.getPrincipal();
+		    int employeeId= employee.getEmployeeId();
+			RoleFeignClient.deleteRole(role,employeeId);
 			return true;
 		} catch (Exception e) {
 			e.printStackTrace();

@@ -1,11 +1,10 @@
 package com.hzcf.basic.service.impl;
 
+import com.hzcf.basic.pojo.Logs;
+import com.hzcf.basic.service.LogService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.stereotype.Service;
-
-import com.hzcf.basic.pojo.Logs;
-import com.hzcf.basic.service.LogService;
 
 /**
  * <dl>

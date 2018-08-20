@@ -70,9 +70,9 @@ public class RoleController {
 	 */
 	@ResponseBody
 	@RequestMapping("/saveRole")
-	public void saveRole(@RequestBody Role role,@RequestBody Employee employee){
+	public void saveRole(@RequestBody Role role,@RequestParam("employeeId") int employeeId){
 		
-			roleService.saveRole(role,employee);
+			roleService.saveRole(role,employeeId);
 	}
 	
 	/**ToTo
@@ -128,8 +128,8 @@ public class RoleController {
 	 */
 	@ResponseBody
 	@RequestMapping("/updateRole")
-	public void updateRole(@RequestBody Role role,@RequestBody Employee employee){
-			roleService.updateRole(role,employee);
+	public void updateRole(@RequestBody Role role,@RequestParam("employeeId") int employeeId){
+			roleService.updateRole(role,employeeId);
 	}
 	
 	
@@ -140,8 +140,8 @@ public class RoleController {
 	 */
 	@ResponseBody
 	@RequestMapping("/deleteRole")
-	public void deleteRole(@RequestBody Role role,@RequestBody Employee employee){
-			roleService.deleteRole(role,employee);
+	public void deleteRole(@RequestBody Role role,@RequestParam("employeeId") int employeeId){
+			roleService.deleteRole(role,employeeId);
 			
 	}
 	

@@ -58,11 +58,11 @@ public class RoleServiceImpl implements RoleService {
 
 
 	@Override
-	public void saveRole(Role role,Employee employee) {
+	public void saveRole(Role role,int employeeId) {
 		//从shiro中获取商户信息
 		/*Subject subject = SecurityUtils.getSubject();
 		Employee employee = (Employee) subject.getPrincipal();*/
-		role.setCreatorId(employee.getEmployeeId());
+		role.setCreatorId(employeeId);
 		role.setUpdateTime(new Date());
 		role.setCreateTime(new Date());
 		role.setRoleStatus("1");
@@ -77,13 +77,13 @@ public class RoleServiceImpl implements RoleService {
 
 
 	@Override
-	public void updateRole(Role updateRole ,Employee employee) {
+	public void updateRole(Role updateRole ,int employeeId) {
 		//查询出要修改的角色
 		Role role = roleMapper.selectByPrimaryKey(updateRole.getId());
 		
 		//Subject subject = SecurityUtils.getSubject();
 		//Employee employee = (Employee) subject.getPrincipal();
-		updateRole.setCreatorId(employee.getEmployeeId());
+		updateRole.setCreatorId(employeeId);
 		updateRole.setUpdateTime(new Date());
 		updateRole.setRoleStatus("1");
 		
@@ -94,12 +94,12 @@ public class RoleServiceImpl implements RoleService {
 
 
 	@Override
-	public void deleteRole(Role role,Employee employee) {
+	public void deleteRole(Role role,int employeeId) {
 //		Subject subject = SecurityUtils.getSubject();
 //		Employee employee = (Employee) subject.getPrincipal();
 		Map<String,Object> map = new HashMap<String,Object>();
 		map.put("id", role.getId());
-		map.put("creatorId", employee.getEmployeeId());
+		map.put("creatorId", employeeId);
 		map.put("roleStatus", "2");
 		roleMapper.deleteRoleById(map);
 	}
