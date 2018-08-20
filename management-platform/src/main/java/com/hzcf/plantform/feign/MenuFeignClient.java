@@ -63,7 +63,7 @@ public interface  MenuFeignClient {
 	 * @return
 	 */
 	  @RequestMapping(value = "/menu/saveMenu", method = RequestMethod.POST)
-	  public void saveMenu(@RequestBody Menu menu);
+	  public void saveMenu(@RequestBody Menu menu,@RequestParam("employeeId") int employeeId);
 
 	  
      /**
@@ -87,7 +87,7 @@ public interface  MenuFeignClient {
 	 * @return
 	 */
 	 @RequestMapping(value = "/menu/updateMenu", method = RequestMethod.POST)
-	public void updateMenu(@RequestBody Menu menu);
+	public void updateMenu(@RequestBody Menu menu,@RequestParam("employeeId") int employeeId);
 
     /**
 	 * 删除菜单
@@ -95,7 +95,7 @@ public interface  MenuFeignClient {
 	 * @return
 	 */
 	 @RequestMapping(value = "/menu/deleteMenu", method = RequestMethod.POST)
-	public void deleteMenu(@RequestBody Menu menu);
+	public void deleteMenu(@RequestBody Menu menu,@RequestParam("employeeId") int employeeId);
 	  
 	 
 	 

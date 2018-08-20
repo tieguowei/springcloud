@@ -1,5 +1,6 @@
 package com.hzcf.basic.service.impl;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -68,13 +69,13 @@ public class MenuServiceImpl implements MenuService {
 	}
 
 	@Override
-	public void saveMenu(Menu menu) {
+	public void saveMenu(Menu menu,int employeeId) {
 		//从shiro中获取商户信息
 //		Subject subject = SecurityUtils.getSubject();
 //		Employee employee = (Employee) subject.getPrincipal();
-//		menu.setCreatorId(employee.getEmployeeId());
-//		menu.setUpdateTime(new Date());
-//		menu.setCreateTime(new Date());
+		menu.setCreatorId(employeeId);
+		menu.setUpdateTime(new Date());
+		menu.setCreateTime(new Date());
 		menuMapper.insert(menu);
 	}
 
@@ -84,16 +85,16 @@ public class MenuServiceImpl implements MenuService {
 	}
 
 	@Override
-	public void updateMenu(Menu updateMenu) {
+	public void updateMenu(Menu updateMenu,int employeeId) {
 		//从shiro中获取商户信息
 //		Subject subject = SecurityUtils.getSubject();
 //		Employee employee = (Employee) subject.getPrincipal();
 //		//查询出要修改的记录
 		Menu menu = menuMapper.selectByPrimaryKey(updateMenu.getMenuId());
 //		
-//		updateMenu.setCreatorId(employee.getEmployeeId());
-//		updateMenu.setUpdateTime(new Date());
-//		updateMenu.setCreateTime(new Date());
+		updateMenu.setCreatorId(employeeId);
+		updateMenu.setUpdateTime(new Date());
+		updateMenu.setCreateTime(new Date());
 		
 		//以下字段无需修改
 		updateMenu.setCreateTime(menu.getCreateTime());
@@ -103,15 +104,15 @@ public class MenuServiceImpl implements MenuService {
 	}
 
 	@Override
-	public void deleteMenu(Menu menu) {
+	public void deleteMenu(Menu menu, int employeeId) {
 		
 		//从shiro中获取商户信息
 //		Subject subject = SecurityUtils.getSubject();
 //		Employee employee = (Employee) subject.getPrincipal();
 		Map<String,Object> map = new HashMap<String,Object>();
-//		map.put("menuId", menu.getMenuId());
-//		map.put("creatorId", employee.getEmployeeId());
-//		map.put("menuStatus", "3");
+		map.put("menuId", menu.getMenuId());
+		map.put("creatorId", employeeId);
+		map.put("menuStatus", "3");
 		menuMapper.deleteMenuByMenuId(map);
 	}
 

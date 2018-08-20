@@ -37,7 +37,7 @@ import com.hzcf.basic.util.PageModel;
 		 * 添加菜单
 		 * @param menu
 		 */
-		public void saveMenu(Menu menu);
+		public void saveMenu(Menu menu,int employeeId);
 		/**
 		 * 根据id 查询菜单 修改回显
 		 * @param mid
@@ -48,12 +48,12 @@ import com.hzcf.basic.util.PageModel;
 		 * 修改菜单
 		 * @param menu
 		 */
-		public void updateMenu(Menu menu);
+		public void updateMenu(Menu menu,int employeeId);
 		/**
 		 * 删除菜单
 		 * @param menu
 		 */
-		public void deleteMenu(Menu menu);
+		public void deleteMenu(Menu menu,int employeeId);
 		
 
 }
