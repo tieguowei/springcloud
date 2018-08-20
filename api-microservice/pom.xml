@@ -2,7 +2,7 @@
   <modelVersion>4.0.0</modelVersion>
   <parent>
     <groupId>com.hzcf</groupId>
-    <artifactId>microservice-cloud</artifactId>
+    <artifactId>hz-cloud-admin</artifactId>
     <version>0.0.1-SNAPSHOT</version>
   </parent>
   <artifactId>api-microservice</artifactId>
