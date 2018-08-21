@@ -66,16 +66,15 @@
 			<properties>
 				<spring.profiles.active>local</spring.profiles.active>
 			</properties>
-			
+			 <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
 		</profile>
 		<profile>
 			<id>beta</id>
 			<properties>
 				<spring.profiles.active>beta</spring.profiles.active>
 			</properties>
-			 <activation>
-                <activeByDefault>true</activeByDefault>
-            </activation>
 		</profile>
 		<profile>
 			<id>prod</id>
