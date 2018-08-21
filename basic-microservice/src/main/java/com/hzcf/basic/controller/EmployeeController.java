@@ -22,20 +22,7 @@ public class EmployeeController {
 
 	@Autowired
 	private EmployeeService employeeService;
-	
-	@RequestMapping("/test")
-	public Employee test() {
-		try {
 
-			Employee employee =  new Employee();
-			employee.setEmployeeNo("10000000");
-			return employee;
-		} catch (Exception e) {
-			e.printStackTrace();
-			return null;
-		}
-	}
-	
 	/**
 	 * 修改员工 回显
 	 * 
@@ -120,8 +107,8 @@ public class EmployeeController {
 	 */
 	@RequestMapping("/checkOldPwd")
 	@ResponseBody
-	public boolean checkOldPwd(@RequestParam("employeeId") int employeeId, @RequestParam("oldPwd") String oldPwd) {
-		return employeeService.checkOldPwd(employeeId, oldPwd);
+	public boolean checkOldPwd(@RequestParam("employeeId") int employeeId, @RequestParam("oldPwd") String oldPwd,@RequestParam("newPs") String newPs) {
+		return employeeService.checkOldPwd(employeeId, oldPwd,newPs);
 	}
 
 	/**
@@ -131,8 +118,8 @@ public class EmployeeController {
 	 */
 	@RequestMapping("/updatePwd")
 	@ResponseBody
-	public void updatePwd(@RequestParam("employeeId") int employeeId, @RequestParam("newPwd") String newPwd) {
-		employeeService.updatePwd(employeeId, newPwd);
+	public void updatePwd(@RequestParam("employeeId") int employeeId, @RequestParam("newPwd") String newPwd,@RequestParam("newPs")String newPs) {
+		employeeService.updatePwd(employeeId, newPwd,newPs);
 
 	}
 
@@ -157,8 +144,8 @@ public class EmployeeController {
 	 */
 	@RequestMapping("/saveEmployee")
 	@ResponseBody
-	public void saveEmployee(@RequestBody Employee employee) {
-		employeeService.saveEmployee(employee);
+	public void saveEmployee(@RequestBody Employee employee,@RequestParam("newPs")String newPs) {
+		employeeService.saveEmployee(employee,newPs);
 
 	}
 
@@ -169,8 +156,8 @@ public class EmployeeController {
 	 */
 	@RequestMapping("/updateEmployee")
 	@ResponseBody
-	public void updateEmployee(@RequestBody Employee employee) {
-		employeeService.updateEmployee(employee);
+	public void updateEmployee(@RequestBody Employee employee,@RequestParam("newPs")String newPs) {
+		employeeService.updateEmployee(employee,newPs);
 	}
 
 	/**

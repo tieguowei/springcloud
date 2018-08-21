@@ -14,9 +14,7 @@ public class EmployeeClientFallback  implements EmployeeFeignClient {
 
 	@Override
 	public Employee getEmployeeById(int employeeId) {
-//		Map<String,Object> map = new HashMap<String,Object>();
-//		map.put("code", "506");
-//		map.put("message", "请求错误");
+		
 		return null;
 	}
 
@@ -38,17 +36,8 @@ public class EmployeeClientFallback  implements EmployeeFeignClient {
 		return null;
 	}
 
-	@Override
-	public boolean checkOldPwd(int employeeId, String oldPwd) {
-		// TODO Auto-generated method stub
-		return false;
-	}
 
-	@Override
-	public void updatePwd(int employeeId, String newPwd) {
-		// TODO Auto-generated method stub
-		
-	}
+	
 
 	@Override
 	public void updateEmployeeRole(int employeeId, String rids) {
@@ -56,20 +45,34 @@ public class EmployeeClientFallback  implements EmployeeFeignClient {
 		
 	}
 
-	@Override
-	public void saveEmployee(Employee employee) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void updateEmployee(Employee employee) {
-		// TODO Auto-generated method stub
-		
-	}
+	
 
 	@Override
 	public void deleteEmployee(Employee employee) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public boolean checkOldPwd(int employeeId, String oldPwd, String newPs) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public void updatePwd(int employeeId, String newPwd, String newPs) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void saveEmployee(Employee employee, String newPs) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void updateEmployee(Employee employee, String newPs) {
 		// TODO Auto-generated method stub
 		
 	}

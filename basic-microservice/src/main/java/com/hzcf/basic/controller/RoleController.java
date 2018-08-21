@@ -167,8 +167,8 @@ public class RoleController {
 	
 	@ResponseBody
 	@RequestMapping("/updateRoleAuth")
-	public void updateRoleAuth(@RequestParam("rid")int rid,@RequestParam("menuIds")String menuIds,@RequestBody Employee employee){
-				roleService.updateRoleAuth(rid, menuIds,employee);
+	public void updateRoleAuth(@RequestParam("rid")int rid,@RequestParam("menuIds")String menuIds,@RequestParam("employeeId") int employeeId){
+				roleService.updateRoleAuth(rid, menuIds,employeeId);
 	}
 	
 }

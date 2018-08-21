@@ -22,7 +22,7 @@
 </div> 
 
 <!-- 模态框（Modal） -->
-<!-- 添加部门 -->
+<!-- 添加 -->
 <div id="addDlg" class="modal fade" tabindex="-1" role="dialog" data-backdrop="static" data-keyboard="false" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
