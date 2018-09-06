@@ -8,6 +8,7 @@
 
     <link rel="stylesheet" href="${path}/css/role/role.css">
     <script src="${path}/js/role/role.js" charset="UTF-8" type="text/javascript"></script>
+    <script src="${path}/static/js/bootstrap.js"></script>
 </head>
 <body>
 <table id="role-table" class="table table-hover table-striped table-condensed table-bordered"></table>

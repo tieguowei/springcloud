@@ -11,7 +11,8 @@
 
     <!-- Mainly scripts -->
     <script src="${path}/static/js/jquery-3.1.1.min.js"></script>
-    <script src="${path}/static/js/bootstrap.js"></script>
+    <!--解决分页问题，提出到每个页面 -->
+     <script src="${path}/static/js/bootstrap.js"></script> 
     <script src="${path}/static/js/plugins/metisMenu/jquery.metisMenu.js"></script>
     <script src="${path}/static/js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
 

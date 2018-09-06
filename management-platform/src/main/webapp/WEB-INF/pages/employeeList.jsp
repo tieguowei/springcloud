@@ -11,6 +11,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <link rel="stylesheet" href="${path}/css/employee/employeePage.css">
    	<script src="${path}/js/employee/employeePage.js" charset="UTF-8" type="text/javascript"></script>
+    <script src="${path}/static/js/bootstrap.js"></script>
     
 </head>
 <body>

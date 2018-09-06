@@ -7,6 +7,7 @@
 <title>菜单管理</title>
 	<link rel="stylesheet" href="${path}/css/menu/menu.css">
 	<script src="${path}/js/menu/menu.js" charset="UTF-8" type="text/javascript"></script>
+	<script src="${path}/static/js/bootstrap.js"></script>
 </head>
 <body>
 
