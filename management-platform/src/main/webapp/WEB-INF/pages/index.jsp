@@ -11,7 +11,8 @@
 
     <!-- Mainly scripts -->
     <script src="${path}/static/js/jquery-3.1.1.min.js"></script>
-    <script src="${path}/static/js/bootstrap.js"></script>
+    <!--解决分页问题，提出到每个页面 -->
+     <script src="${path}/static/js/bootstrap.js"></script> 
     <script src="${path}/static/js/plugins/metisMenu/jquery.metisMenu.js"></script>
     <script src="${path}/static/js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
 
@@ -230,7 +231,7 @@ function jumpurl(){
                 <li class="nav-header">
                     <div class="dropdown profile-element"> 
                    		 <span>
-	                            <img alt="image" class="img-circle" src="${path}/static/img/profile_small.jpg" />
+	                            <img alt="image" class="img-circle" src="${path}/static/img/head_portrait.png" />
                        &nbsp; &nbsp; &nbsp; &nbsp;
                          		<font color="white">${employee.name}</font>
                        </span>

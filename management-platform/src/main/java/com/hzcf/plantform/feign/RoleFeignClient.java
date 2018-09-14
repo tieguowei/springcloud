@@ -33,7 +33,7 @@ import com.hzcf.plantform.util.ViewTree;
  * ------------------------------------------------------------------ 
  * 2018年8月9日 下午2:54:54    TieGuowei       1.0        1.0 Version 
  * </pre>
- *</dl>
+ *</dl>updateRoleAuth
  */
 @FeignClient(name = "basic-microservice", configuration=FeignDisableHystrixConfiguration.class)
 public interface  RoleFeignClient {
@@ -128,7 +128,7 @@ public interface  RoleFeignClient {
 		 * 修改角色权限
 		 */
 	   @RequestMapping(value = "/role/updateRoleAuth", method = RequestMethod.POST)
-	   public void updateRoleAuth(@RequestParam("rid")int rid,@RequestParam("menuIds")String menuIds,@RequestBody Employee employee);
+	   public void updateRoleAuth(@RequestParam("rid")int rid,@RequestParam("menuIds")String menuIds,@RequestParam("employeeId") int employeeId);
 	  
 	  
 	  

@@ -164,7 +164,7 @@ public class RoleServiceImpl implements RoleService {
 
 	@Transactional
 	@Override
-	public void updateRoleAuth(int rid, String menuIds,Employee employee) {
+	public void updateRoleAuth(int rid, String menuIds,int employeeId) {
 		//根据角色id删除原有的菜单id
 		roleMenuRelationMapper.deleteMenuIdByRoleId(rid);
 		//添加新的菜单id
@@ -175,7 +175,7 @@ public class RoleServiceImpl implements RoleService {
 		for (int i = 0; i < split.length; i++) {
 			RoleMenuRelation relation = new RoleMenuRelation();
 			relation.setUpdateTime(new Date());
-			relation.setCreatorId(employee.getEmployeeId());
+			relation.setCreatorId(employeeId);
 			relation.setMenuId(Integer.valueOf(split[i]));
 			relation.setCreateTime(new Date());
 			relation.setRoleId(rid);

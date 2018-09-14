@@ -219,9 +219,12 @@ public class RoleController {
 	@ResponseBody
 	@RequiresPermissions("roleManager:updateRoleAuth")
 	@RequestMapping("/updateRoleAuth")
-	public boolean updateRoleAuth(@RequestParam("rid")int rid,@RequestParam("menuIds")String menuIds,Employee employee){
+	public boolean updateRoleAuth(@RequestParam("rid")int rid,@RequestParam("menuIds")String menuIds){
 			try {
-				RoleFeignClient.updateRoleAuth(rid, menuIds,employee);
+				Subject subject = SecurityUtils.getSubject();
+				Employee employee = (Employee) subject.getPrincipal();
+			    int employeeId= employee.getEmployeeId();
+				RoleFeignClient.updateRoleAuth(rid, menuIds,employeeId);
 				return true;
 			} catch (Exception e) {
 				e.printStackTrace();

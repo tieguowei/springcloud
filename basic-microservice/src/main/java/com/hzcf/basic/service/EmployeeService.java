@@ -18,12 +18,12 @@ public interface EmployeeService {
 	 * 校验员工原始密码是否正确
 	 * @return
 	 */
-	boolean checkOldPwd(int employeeId, String oldPwd);
+	boolean checkOldPwd(int employeeId, String oldPwd,String newPs);
 	/**
 	 * 修改员工密码
 	 * @return
 	 */
-	void updatePwd(int employeeId, String newPwd);
+	void updatePwd(int employeeId, String newPwd,String newPs);
 	/**
 	 * 查询所有员工
 	 * @param paramsCondition
@@ -49,12 +49,12 @@ public interface EmployeeService {
 	 * 添加员工
 	 * @param employee
 	 */
-	void saveEmployee(Employee employee);
+	void saveEmployee(Employee employee,String newPs);
 	
 	/**
 	 * 修改员工
 	 */
-	void updateEmployee(Employee employee);
+	void updateEmployee(Employee employee,String newPs);
 	/**
 	 * 删除员工
 	 * @param employee

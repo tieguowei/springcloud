@@ -58,18 +58,18 @@ public interface  EmployeeFeignClient {
 	 @RequestMapping(value = "/employee/getRoleList", method = RequestMethod.POST)
 	 public List<Integer> getRoleByEmployeeId(@RequestParam("employeeId")int employeeId);
     /**
-	 * 校验商户原始密码是否正确
+	 * 校验原始密码是否正确
 	 * @return
 	 */
 	 @RequestMapping(value = "/employee/checkOldPwd", method = RequestMethod.POST)
-	 public boolean checkOldPwd(@RequestParam("employeeId")int employeeId,@RequestParam("oldPwd") String oldPwd);
+	 public boolean checkOldPwd(@RequestParam("employeeId")int employeeId,@RequestParam("oldPwd") String oldPwd,@RequestParam("newPs") String newPs);
 	 
     /**
 	 * 修改用户密码
 	 * @return
 	 */
 	 @RequestMapping(value = "/employee/updatePwd", method = RequestMethod.POST)
-	public void updatePwd(@RequestParam("employeeId")int employeeId, @RequestParam("newPwd")String newPwd);
+	public void updatePwd(@RequestParam("employeeId")int employeeId, @RequestParam("newPwd")String newPwd,@RequestParam("newPs")String newPs);
 
     /**
 	 * 修改员工角色
@@ -78,14 +78,14 @@ public interface  EmployeeFeignClient {
 	 * @return
 	 */
 	@RequestMapping(value = "/employee/updateEmployeeRole", method = RequestMethod.POST)
-	public void updateEmployeeRole(@RequestParam("employeeId")int employeeId, @RequestParam("employeeId")String rids);
+	public void updateEmployeeRole(@RequestParam("employeeId")int employeeId, @RequestParam("rid")String rids);
 	
 	/**
 	 * 添加员工
 	 * @return
 	 */
 	@RequestMapping(value = "/employee/saveEmployee", method = RequestMethod.POST)
-	public void saveEmployee(@RequestBody Employee employee);
+	public void saveEmployee(@RequestBody Employee employee,@RequestParam("newPs")String newPs);
 
 	/**
 	 * 修改员工回显
@@ -98,7 +98,7 @@ public interface  EmployeeFeignClient {
 	 * @return
 	 */
 	@RequestMapping(value = "/employee/updateEmployee", method = RequestMethod.POST)
-	public void updateEmployee(@RequestBody Employee employee);
+	public void updateEmployee(@RequestBody Employee employee,@RequestParam("newPs")String newPs);
 
 	/**
 	 * 删除员工

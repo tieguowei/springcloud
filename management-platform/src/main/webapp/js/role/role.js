@@ -423,9 +423,11 @@ var Role = function () {
             $("#authDlg").modal('hide');
             $("#addDlg").modal('hide');
             $("#mydlg").modal('hide');
+            $("input[type=reset]").trigger("click");
             $('#updateForm').data('bootstrapValidator', null);
             $('#addForm').data('bootstrapValidator', null);
             Role.formValidator();
+            
         },
         //表单验证
         formValidator:function () {

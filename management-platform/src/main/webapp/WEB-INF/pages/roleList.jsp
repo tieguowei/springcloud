@@ -8,6 +8,7 @@
 
     <link rel="stylesheet" href="${path}/css/role/role.css">
     <script src="${path}/js/role/role.js" charset="UTF-8" type="text/javascript"></script>
+    <script src="${path}/static/js/bootstrap.js"></script>
 </head>
 <body>
 <table id="role-table" class="table table-hover table-striped table-condensed table-bordered"></table>
@@ -22,7 +23,7 @@
 </div> 
 
 <!-- 模态框（Modal） -->
-<!-- 添加部门 -->
+<!-- 添加 -->
 <div id="addDlg" class="modal fade" tabindex="-1" role="dialog" data-backdrop="static" data-keyboard="false" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">

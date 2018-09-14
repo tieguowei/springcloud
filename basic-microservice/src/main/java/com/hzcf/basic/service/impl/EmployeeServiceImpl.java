@@ -45,23 +45,23 @@ public class EmployeeServiceImpl implements EmployeeService {
 	}
 	
 	@Override
-	public boolean checkOldPwd(int employeeId, String oldPwd) {
+	public boolean checkOldPwd(int employeeId, String oldPwd,String newPs) {
 		//根据id查出员工信息
 		Employee employee = employeeMapper.selectByPrimaryKey(employeeId);
 		//对获取的密码进行加密处理
 //	     String newPs = new SimpleHash("MD5", oldPwd, employee.getEmployeeNo()+employee.getSalt(), 2).toHex();
-//		 if(employee.getPassword().equals(newPs)){
-//			 return true;
-//		 }
+		 if(employee.getPassword().equals(newPs)){
+			 return true;
+		 }
 		 return false;
 	}
 
 	@Override
-	public void updatePwd(int employeeId, String newPwd) {
+	public void updatePwd(int employeeId, String newPwd,String newPs) {
 		Employee employee = employeeMapper.selectByPrimaryKey(employeeId);
 		employee.setUpdateTime(new Date());
 //	    String newPs = new SimpleHash("MD5", newPwd, employee.getEmployeeNo()+employee.getSalt(), 2).toHex();
-//	    employee.setPassword(newPs);
+	    employee.setPassword(newPs);
 	    employeeMapper.updateByPrimaryKeySelective(employee);
 	}
 
@@ -95,14 +95,15 @@ public class EmployeeServiceImpl implements EmployeeService {
 	}
 
 	@Override
-	public void saveEmployee(Employee employee) {
+	public void saveEmployee(Employee employee,String newPs ) {
 		String uuid = UUIDUtil.getUUID();
 		employee.setCreateTime(new Date());
 		employee.setUpdateTime(new Date());
 		employee.setSalt(uuid);
 		//密码加密
+
 //	    String newPs = new SimpleHash("MD5", employee.getPassword(), employee.getEmployeeNo()+uuid, 2).toHex();
-//	    employee.setPassword(newPs);
+	    employee.setPassword(newPs);
 	    employee.setActivatedState("1");
 	    employeeMapper.insert(employee);
 	}
@@ -113,16 +114,16 @@ public class EmployeeServiceImpl implements EmployeeService {
 	}
 
 	@Override
-	public void updateEmployee(Employee employee) {
+	public void updateEmployee(Employee employee,String newPs) {
 		Employee result =employeeMapper.selectByPrimaryKey(employee.getEmployeeId());
 
 		//密码还原
-//		if("1".equals(employee.getIsResetPwd())){
+		if("1".equals(employee.getIsResetPwd())){
 //		    String newPs = new SimpleHash("MD5", "123456", result.getEmployeeNo()+result.getSalt(), 2).toHex();
-//		    employee.setPassword(newPs);
-//		}else{
-//			employee.setPassword(result.getPassword());
-//		}
+		    employee.setPassword(newPs);
+		}else{
+			employee.setPassword(result.getPassword());
+		}
 		
 		employee.setUpdateTime(new Date());
 		//以下字段不修改

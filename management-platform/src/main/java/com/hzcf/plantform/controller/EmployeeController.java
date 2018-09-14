@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
+import org.apache.shiro.crypto.hash.SimpleHash;
 import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -21,6 +22,7 @@ import com.hzcf.plantform.pojo.Role;
 import com.hzcf.plantform.util.DataMsg;
 import com.hzcf.plantform.util.PageModel;
 import com.hzcf.util.StringUtil;
+import com.hzcf.util.UUIDUtil;
 
 
 /**
@@ -114,7 +116,10 @@ public class  EmployeeController {
 		@ResponseBody
 		public boolean checkOldPwd(@RequestParam("employeeId")int employeeId,@RequestParam("oldPwd") String oldPwd){
 			try {
-				return  employeeFeignClient.checkOldPwd(employeeId,oldPwd);
+				Employee employee = employeeFeignClient.getEmployeeById(employeeId);
+				
+				String newPs = new SimpleHash("MD5", oldPwd, employee.getEmployeeNo()+employee.getSalt(), 2).toHex();
+				return  employeeFeignClient.checkOldPwd(employeeId,oldPwd,newPs);
 			} catch (Exception e) {
 				e.printStackTrace();
 				return false;
@@ -130,7 +135,9 @@ public class  EmployeeController {
 		@ResponseBody
 		public boolean updatePwd(@RequestParam("employeeId")int employeeId,@RequestParam("newPwd") String newPwd){
 			try {
-				employeeFeignClient.updatePwd(employeeId,newPwd);
+				Employee employee = employeeFeignClient.getEmployeeById(employeeId);
+				String newPs = new SimpleHash("MD5", newPwd, employee.getEmployeeNo()+employee.getSalt(), 2).toHex();
+				employeeFeignClient.updatePwd(employeeId,newPwd,newPs);
 				 return true;
 			} catch (Exception e) {
 				e.printStackTrace();
@@ -166,7 +173,10 @@ public class  EmployeeController {
 		@ResponseBody
 		public boolean saveEmployee(Employee employee){
 			try {
-				employeeFeignClient.saveEmployee(employee);
+				
+				String uuid = UUIDUtil.getUUID();
+			    String newPs = new SimpleHash("MD5", employee.getPassword(), employee.getEmployeeNo()+uuid, 2).toHex();
+				employeeFeignClient.saveEmployee(employee,newPs);
 				 return true;
 			} catch (Exception e) {
 				e.printStackTrace();
@@ -200,7 +210,9 @@ public class  EmployeeController {
 		@ResponseBody
 		public boolean updateEmployee(Employee employee){
 			try {
-				employeeFeignClient.updateEmployee(employee);
+				Employee result =employeeFeignClient.getEmployeeById(employee.getEmployeeId());
+				String newPs = new SimpleHash("MD5", "123456", result.getEmployeeNo()+result.getSalt(), 2).toHex();
+				employeeFeignClient.updateEmployee(employee,newPs);
 				 return true;
 			} catch (Exception e) {
 				e.printStackTrace();
