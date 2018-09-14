@@ -231,7 +231,7 @@ function jumpurl(){
                 <li class="nav-header">
                     <div class="dropdown profile-element"> 
                    		 <span>
-	                            <img alt="image" class="img-circle" src="${path}/static/img/profile_small.jpg" />
+	                            <img alt="image" class="img-circle" src="${path}/static/img/head_portrait.png" />
                        &nbsp; &nbsp; &nbsp; &nbsp;
                          		<font color="white">${employee.name}</font>
                        </span>
