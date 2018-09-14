@@ -350,8 +350,14 @@
       update_time = #{updateTime,jdbcType=TIMESTAMP}
     where menu_id = #{menuId,jdbcType=INTEGER}
   </update>
- 
-  <!-- 根据员工id查找菜单 -->
+  <!-- 设置查询条件 -->
+   <sql id="dynamicPageWhere">
+  	<if test="nameZh != null">
+  		and name_zh LIKE CONCAT('%',#{nameZh},'%') 
+ 	</if>
+  </sql>
+  
+  <!-- 根据用户id查找菜单 -->
   <select id="getMenuByEmployeeId" parameterType="int" resultMap="BaseResultMap">
 	select 
 			DISTINCT
@@ -372,7 +378,35 @@
 		order by menu_sort
   </select>
   
-   <!-- 根据员工角色id 查询权限 -->
+  
+  <!-- 查询菜单 列表分页 -->
+  <select id="findAllRetMapByPage" resultType="hashmap" parameterType="hashmap">
+  	SELECT
+		menu_id,
+		name_zh,
+		menu_icon,
+		permission,
+		menu_type,
+		CASE
+			WHEN menu_status = '1' THEN '启用' 
+			WHEN menu_status = '2' THEN '禁用' 
+		end as  menu_status,
+		menu_url,
+		remark
+	FROM
+		t_menu
+	where menu_status != '3'
+	<include refid="dynamicPageWhere"/> 
+	limit #{startIndex},#{pageSize}
+  </select>
+  
+   <!--查询列表 分页总数 -->
+  <select id="findAllByPageCount" resultType="long" parameterType="hashmap">
+  	SELECT COUNT(*) FROM t_menu where menu_status != '3'
+  	<include refid="dynamicPageWhere"/> 
+  </select>
+  
+  <!-- 根据商户角色id 查询权限 -->
   <select id="permissionListRoleId" parameterType="int" resultMap="BaseResultMap">
   	SELECT
 		m.menu_id,
@@ -389,4 +423,56 @@
 		mr.role_id =#{id}
 		and m.menu_status != '3'
   </select>
+  
+  <!-- 查询所有pid为0的菜单 -->
+  <select id="getParentMenuList" resultType="hashmap">
+	  SELECT
+		menu_id menuId,
+		name_zh menuName,
+		parent_id,
+    	menu_icon
+	FROM
+		t_menu
+	where parent_id = 0
+	and menu_status = 1
+  </select>
+  
+  <!--  校验菜单名称是否重复-->
+  <select id="checkMenuNameIsRepeat" parameterType="hashmap" resultMap="BaseResultMap">
+  	SELECT
+		menu_id,
+		name_zh
+	FROM
+		t_menu
+	where name_zh =#{nameZh}
+	and menu_status = 1
+	<if test="menuId != null">
+		and menu_id != #{menuId}
+	</if>
+  </select>
+  
+  
+  <!-- 删除菜单 -->
+  <select id="deleteMenuByMenuId" parameterType="hashmap">
+  		UPDATE  t_menu
+	SET menu_status = #{menuStatus},
+	 creator_id = #{creatorId},
+	 update_time = now()
+	WHERE
+		menu_id = #{menuId};
+  </select>
+  
+  <select id="queryChildMenuByPid" parameterType="String" resultMap="BaseResultMap">
+	  SELECT
+		menu_id,
+		menu_icon,
+		parent_id,
+		name_zh
+	FROM
+		t_menu
+	WHERE
+		parent_id =#{pid}
+	AND menu_status = '1'
+  </select>
+  
 </mapper>
