@@ -6,6 +6,29 @@
     <version>0.0.1-SNAPSHOT</version>
   </parent>
   <artifactId>basic-microservice</artifactId>
+  <profiles>
+		<profile>
+			<id>local</id>
+			<properties>
+				<spring.profiles.active>local</spring.profiles.active>
+			</properties>
+			 <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+		</profile>
+		<profile>
+			<id>beta</id>
+			<properties>
+				<spring.profiles.active>beta</spring.profiles.active>
+			</properties>
+		</profile>
+		<profile>
+			<id>prod</id>
+			<properties>
+				<spring.profiles.active>prod</spring.profiles.active>
+			</properties>
+		</profile>
+	</profiles>
   <dependencies>
   		<dependency>
 				<groupId>com.hzcf</groupId>
@@ -58,29 +81,22 @@
 	            <artifactId>spring-boot-devtools</artifactId>
 	            <optional>true</optional>
 	           <scope>true</scope>
-		</dependency> 
+		</dependency>
+		<!-- cloud config --> 
+		 <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-config</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
 	</dependencies>
-	<profiles>
-		<profile>
-			<id>local</id>
-			<properties>
-				<spring.profiles.active>local</spring.profiles.active>
-			</properties>
-			 <activation>
-                <activeByDefault>true</activeByDefault>
-            </activation>
-		</profile>
-		<profile>
-			<id>beta</id>
-			<properties>
-				<spring.profiles.active>beta</spring.profiles.active>
-			</properties>
-		</profile>
-		<profile>
-			<id>prod</id>
-			<properties>
-				<spring.profiles.active>prod</spring.profiles.active>
-			</properties>
-		</profile>
-	</profiles>
 </project>
