@@ -6,29 +6,6 @@
     <version>0.0.1-SNAPSHOT</version>
   </parent>
   <artifactId>basic-microservice</artifactId>
-  <profiles>
-		<profile>
-			<id>local</id>
-			<properties>
-				<spring.profiles.active>local</spring.profiles.active>
-			</properties>
-			 <activation>
-                <activeByDefault>true</activeByDefault>
-            </activation>
-		</profile>
-		<profile>
-			<id>beta</id>
-			<properties>
-				<spring.profiles.active>beta</spring.profiles.active>
-			</properties>
-		</profile>
-		<profile>
-			<id>prod</id>
-			<properties>
-				<spring.profiles.active>prod</spring.profiles.active>
-			</properties>
-		</profile>
-	</profiles>
   <dependencies>
   		<dependency>
 				<groupId>com.hzcf</groupId>
