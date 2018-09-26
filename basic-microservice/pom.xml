@@ -6,6 +6,29 @@
     <version>0.0.1-SNAPSHOT</version>
   </parent>
   <artifactId>basic-microservice</artifactId>
+  <profiles>
+		<profile>
+			<id>local</id>
+			<properties>
+				<spring.profiles.active>local</spring.profiles.active>
+			</properties>
+		</profile>
+		<profile>
+			<id>beta</id>
+			<properties>
+				<spring.profiles.active>beta</spring.profiles.active>
+			</properties>
+		</profile>
+		<profile>
+			<id>prod</id>
+			<properties>
+				<spring.profiles.active>prod</spring.profiles.active>
+			</properties>
+			<activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+		</profile>
+	</profiles>
   <dependencies>
   		<dependency>
 				<groupId>com.hzcf</groupId>
@@ -45,7 +68,6 @@
 	  <dependency>
 		  <groupId>org.springframework.boot</groupId>
 		  <artifactId>spring-boot-starter-data-redis</artifactId>
-		  <version>1.5.2.RELEASE</version>
 	  </dependency>
 	  <!-- 添加springboot对amqp的支持 -->
 	  <dependency>
